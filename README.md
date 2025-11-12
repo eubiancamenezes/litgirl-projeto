@@ -1,6 +1,6 @@
 LitGirl • Seu Cantinho Literário (projeto acadêmico)
 
-![Logo do Café&Art](img/logo.jpeg)
+![Logo do litgirl-projeto](img/logo.jpeg)
 
 Descrição do Projeto
 
