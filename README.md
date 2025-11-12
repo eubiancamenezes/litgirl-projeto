@@ -78,14 +78,9 @@ Paleta de Cores e Design System
 
 Como Usar
 
-1. Acesse o projeto online: [Link do GitHub Pages quando disponível]
-2. Clone o repositório:
+1. Acesse o projeto online:(https://github.com/eubiancamenezes/litgirl-projeto)
 
-```bash
-git clone https://github.com/seu-usuario/litgirl-projeto.git
-```
-
-1. Navegue localmente:
+Navegue localmente:
    · Abra o arquivo index.html no navegador
    · Explore as três seções principais: Início, Biblioteca e Sobre
    · Experimente o sistema de tema claro/escuro
