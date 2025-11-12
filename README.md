@@ -43,6 +43,7 @@ LitGirl-projeto/
 │
 ├── index.html
 ├── login.html
+├── perfil.html
 ├── css/
 │   ├── style.css
 │   └── responsivo.css
@@ -59,7 +60,9 @@ LitGirl-projeto/
 │   ├── opequenoprincipe.jpeg
 │   └── 1984.jpeg
 ├── js/
-│   └── script.js
+│   ├── login.js
+│   ├── main.js
+│   └── storage.js
 └── README.md
 ```
 
