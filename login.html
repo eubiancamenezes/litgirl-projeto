@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login • LitGirl</title>
+  <meta name="description" content="Faça login na LitGirl e entre na nossa comunidade literária!" />
+
+  <!-- 🌷 Fontes Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* 🔥 HEADER COMPATÍVEL COM INDEX.HTML */
+    .header-principal {
+        background: linear-gradient(135deg, #fff8c6, #fff4b0);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.6rem 1.5rem;
+        box-shadow: 0 2px 10px rgba(155, 145, 235, 0.2);
+        height: 60px;
+    }
+
+    [data-theme="dark"] .header-principal {
+        background: linear-gradient(135deg, #3d3636, #2f2a2a);
+    }
+
+    .logo-link {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #8a2be2;
+        text-decoration: none;
+    }
+
+    .nav-principal {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+    }
+
+    .nav-link {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        color: #574944;
+        text-decoration: none;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+    }
+
+    .nav-link.active {
+        font-weight: 700;
+        color: #8a2be2 !important;
+        background: rgba(138, 43, 226, 0.1);
+    }
+
+    .nav-link:hover {
+        background: #8a2be2;
+        color: white !important;
+    }
+
+    .btn-login {
+        background: #8a2be2;
+        color: white !important;
+        padding: 0.5rem 1.2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+
+    .theme-toggle-header {
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid #8a2be2;
+        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+    /* 🔥 CORREÇÃO - CONTEÚDO VISÍVEL */
+    body {
+        padding-top: 80px;
+        background: linear-gradient(135deg, var(--bg-principal), var(--bg-destaque));
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    /* 🌸 CONTAINER DE LOGIN */
+    .login-container {
+        background: var(--bg-destaque);
+        padding: 3rem;
+        border-radius: 25px;
+        box-shadow: 0 20px 40px rgba(155, 145, 235, 0.3);
+        width: 100%;
+        max-width: 450px;
+        border: 3px solid var(--cor-secundaria);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .login-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--cor-primaria), var(--cor-secundaria));
+    }
+
+    .login-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .login-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .login-header h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.2rem;
+        color: var(--cor-primaria);
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+    }
+
+    .login-header p {
+        font-family: 'Poppins', sans-serif;
+        color: var(--texto-principal);
+        opacity: 0.8;
+        font-size: 1.1rem;
+    }
+
+    /* 🎪 DEMO CREDENTIALS - ESTILO DISCRETO */
+    .demo-credentials {
+        background: rgba(155, 145, 235, 0.05);
+        padding: 0.8rem;
+        border-radius: 8px;
+        margin: 1rem 0;
+        border-left: 3px solid var(--cor-primaria);
+        font-size: 0.85rem;
+    }
+
+    .demo-credentials h4 {
+        font-family: 'Poppins', sans-serif;
+        color: var(--cor-primaria);
+        margin-bottom: 0.4rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+
+    .demo-credentials p {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.75rem;
+        color: var(--texto-principal);
+        margin: 0.15rem 0;
+        opacity: 0.8;
+    }
+
+    /* 📝 FORMULÁRIO */
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .form-group label {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        color: var(--texto-principal);
+        font-size: 0.95rem;
+    }
+
+    .form-input {
+        padding: 1rem 1.2rem;
+        border: 2px solid var(--cor-secundaria);
+        border-radius: 12px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        background: var(--bg-principal);
+        color: var(--texto-principal);
+        transition: all 0.3s ease;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: var(--cor-primaria);
+        box-shadow: 0 0 0 3px rgba(155, 145, 235, 0.2);
+        transform: translateY(-2px);
+    }
+
+    .form-input::placeholder {
+        color: var(--texto-principal);
+        opacity: 0.6;
+    }
+
+    /* 👁️ BOTÃO MOSTRAR SENHA - CORREÇÃO DE TAMANHO */
+    .password-container {
+        position: relative;
+        width: 100%;
+    }
+
+    .password-container .form-input {
+        width: 100%;
+        padding-right: 3rem;
+    }
+
+    .toggle-password {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: var(--texto-principal);
+        opacity: 0.6;
+        transition: opacity 0.3s ease;
+        padding: 0;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .toggle-password:hover {
+        opacity: 1;
+    }
+
+    /* 🔗 LINKS EXTRAS */
+    .login-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1rem 0;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.9rem;
+    }
+
+    .remember-me {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--texto-principal);
+    }
+
+    .remember-me input {
+        accent-color: var(--cor-primaria);
+    }
+
+    .forgot-password {
+        color: var(--cor-primaria);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .forgot-password:hover {
+        color: var(--cor-destaque);
+        text-decoration: underline;
+    }
+
+    /* 🎯 BOTÕES */
+    .btn-login-submit {
+        background: var(--cor-primaria);
+        color: white;
+        border: none;
+        padding: 1.2rem 2rem;
+        border-radius: 15px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+        box-shadow: 0 8px 25px var(--sombra-media);
+        width: 100%;
+    }
+
+    .btn-login-submit:hover {
+        background: var(--cor-destaque);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px var(--sombra-media);
+    }
+
+    .btn-login-submit:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+
+    /* 💫 ANIMAÇÃO DE CARREGAMENTO */
+    .loading {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255,255,255,.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    /* 🎭 MENSAGENS */
+    .message {
+        padding: 1rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        animation: slideDown 0.3s ease;
+    }
+
+    .message.success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .message.error {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* 🎨 VARIÁVEIS DE TEMA */
+    :root {
+        --bg-principal: #fff6e6;
+        --bg-destaque: #fff8c6;
+        --cor-primaria: #9b91eb;
+        --cor-secundaria: #e2a9f1;
+        --cor-destaque: #7b6bff;
+        --texto-principal: #574944;
+        --sombra-media: rgba(155, 145, 235, 0.4);
+    }
+
+    [data-theme="dark"] {
+        --bg-principal: #2f2a2a;
+        --bg-destaque: #3d3636;
+        --texto-principal: #f4e9d8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔹 HEADER FIXO -->
+  <header class="header-principal">
+    <div class="logo">
+      <a href="index.html" class="logo-link">🌸 LitGirl</a>
+    </div>
+    
+    <nav class="nav-principal" aria-label="Navegação principal">
+      <a href="index.html" class="nav-link">Início</a>
+      <a href="index.html#biblioteca" class="nav-link">Biblioteca</a>
+      <a href="index.html#sobre" class="nav-link">Sobre</a>
+      <a href="login.html" class="btn-login active">Entrar</a>
+    </nav>
+    
+    <button id="theme-toggle-header" class="theme-toggle-header">☀️</button>
+  </header>
+
+  <!-- 🌸 CONTEÚDO PRINCIPAL -->
+  <main>
+    <div class="login-container">
+      <div class="login-header">
+        <span class="login-icon">🔐</span>
+        <h1>Bem-vinda de Volta!</h1>
+        <p>Entre na sua conta e continue sua jornada literária</p>
+      </div>
+
+      <!-- 🎪 CREDENCIAIS DE DEMONSTRAÇÃO - VERSÃO DISCRETA -->
+      <div class="demo-credentials">
+        <h4>🔐 Perfil teste</h4>
+        <p><strong>Email:</strong> email@teste.com</p>
+        <p><strong>Senha:</strong> 12345</p>
+      </div>
+
+      <form class="login-form" id="loginForm">
+        <div id="messageContainer"></div>
+
+        <div class="form-group">
+          <label for="email">📧 Email</label>
+          <input 
+            type="email" 
+            id="email" 
+            class="form-input" 
+            placeholder="email"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password">🔒 Senha</label>
+          <div class="password-container">
+            <input 
+              type="password" 
+              id="password" 
+              class="form-input" 
+              placeholder="senha"
+              required
+            >
+            <button type="button" class="toggle-password" id="togglePassword">👁️</button>
+          </div>
+        </div>
+
+        <div class="login-options">
+          <label class="remember-me">
+            <input type="checkbox" id="rememberMe">
+            Lembrar de mim
+          </label>
+          <a href="#esqueci-senha" class="forgot-password">Esqueci a senha</a>
+        </div>
+
+        <button type="submit" class="btn-login-submit" id="submitBtn">
+          <span id="btnText">✨ Entrar na Comunidade</span>
+          <span id="btnLoading" class="loading" style="display: none;"></span>
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- 🔹 FOOTER -->
+  <footer class="footer-principal" style="background: linear-gradient(to bottom, #f9e8d8, #f5e0d0); padding: 2rem 0; text-align: center;">
+    <div class="footer-conteudo" style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+      <p style="font-family: 'Poppins', sans-serif; font-size: 1rem; margin: 0.5rem 0; color: #574944;">© 2025 LitGirl • Feito com 💖 por Bianca Oliveira</p>
+      <p style="font-family: 'Poppins', sans-serif; font-size: 1rem; margin: 0.5rem 0; color: #574944;">Um espaço criado para leitoras que amam livros, cafés e boas histórias. ☕📚</p>
+    </div>
+  </footer>
+
+  <!-- ⚙️ SCRIPT -->
+  <script>
+    // 🌙 SISTEMA DE TEMA
+    function inicializarTema() {
+      const btnHeader = document.getElementById('theme-toggle-header');
+      
+      const temaSalvo = localStorage.getItem('litgirl-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', temaSalvo);
+      
+      const icone = temaSalvo === 'dark' ? '🌙' : '☀️';
+      if (btnHeader) btnHeader.textContent = icone;
+      
+      function alternarTema() {
+        const atual = document.documentElement.getAttribute('data-theme');
+        const novo = atual === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', novo);
+        localStorage.setItem('litgirl-theme', novo);
+        const novoIcone = novo === 'dark' ? '🌙' : '☀️';
+        if (btnHeader) btnHeader.textContent = novoIcone;
+      }
+      
+      if (btnHeader) btnHeader.addEventListener('click', alternarTema);
+    }
+
+    // 👁️ MOSTRAR/ESCONDER SENHA
+    function inicializarToggleSenha() {
+      const toggleBtn = document.getElementById('togglePassword');
+      const passwordInput = document.getElementById('password');
+      
+      toggleBtn.addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        toggleBtn.textContent = type === 'password' ? '👁️' : '🙈';
+      });
+    }
+
+    // 💫 MOSTRAR MENSAGEM
+    function mostrarMensagem(mensagem, tipo) {
+      const container = document.getElementById('messageContainer');
+      container.innerHTML = `<div class="message ${tipo}">${mensagem}</div>`;
+    }
+
+    // 🎯 SIMULAÇÃO DE LOGIN COM CREDENCIAIS ESPECÍFICAS
+    function simularLogin(email, senha) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          if (email === 'email@teste.com' && senha === '12345') {
+            resolve({ success: true, message: 'Login realizado com sucesso! Bem-vinda, Criadora!' });
+          } else {
+            resolve({ success: false, message: 'Email ou senha incorretos.' });
+          }
+        }, 1500);
+      });
+    }
+
+    // 📝 VALIDAÇÃO DO FORMULÁRIO
+    function inicializarFormulario() {
+      const form = document.getElementById('loginForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      const btnLoading = document.getElementById('btnLoading');
+      
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        
+        if (!email || !password) {
+          mostrarMensagem('Por favor, preencha todos os campos!', 'error');
+          return;
+        }
+        
+        // Mostrar loading
+        submitBtn.disabled = true;
+        btnText.style.display = 'none';
+        btnLoading.style.display = 'inline-block';
+        
+        try {
+          const resultado = await simularLogin(email, password);
+          
+          if (resultado.success) {
+            mostrarMensagem('✅ ' + resultado.message, 'success');
+            
+            // Redireciona após 2 segundos
+            setTimeout(() => {
+              window.location.href = 'perfil.html';
+            }, 2000);
+            
+          } else {
+            mostrarMensagem('❌ ' + resultado.message, 'error');
+          }
+        } finally {
+          // Restaura botão
+          submitBtn.disabled = false;
+          btnText.style.display = 'inline-block';
+          btnLoading.style.display = 'none';
+        }
+      });
+    }
+    
+    // 🚀 INICIALIZAÇÃO
+    document.addEventListener('DOMContentLoaded', function() {
+      inicializarTema();
+      inicializarToggleSenha();
+      inicializarFormulario();
+    });
+  </script>
+</body>
+</html>

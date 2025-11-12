@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LitGirl • Seu Cantinho Literário</title>
+  <meta name="description" content="LitGirl é o seu refúgio literário. Um espaço feito para leitoras que amam livros, histórias e boas conversas." />
+
+  <!-- 🌷 Fontes Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- 🎨 Estilos -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsivo.css" />
+
+  <style>
+    /* 🔥 CORREÇÃO SPA - CONTEÚDO VISÍVEL */
+    body {
+        padding-top: 80px;
+    }
+    
+    /* 🌸 CONTEÚDO SPA */
+    .spa-content {
+        display: none;
+        animation: fadeIn 0.5s ease-in;
+    }
+    
+    .spa-content.active {
+        display: block;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 🏠 PÁGINA INÍCIO ENRIQUECIDA */
+    .inicio-conteudo {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .hero-banner {
+        position: relative;
+        height: 70vh;
+        min-height: 500px;
+        border-radius: 0 0 30px 30px;
+        overflow: hidden;
+        margin-bottom: 4rem;
+        box-shadow: 0 20px 40px rgba(155, 145, 235, 0.2);
+    }
+
+    .hero-banner::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(155, 145, 235, 0.8), rgba(255, 220, 132, 0.6));
+        z-index: 1;
+    }
+
+    .hero-banner img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .hero-texto {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        z-index: 2;
+        width: 90%;
+        max-width: 800px;
+    }
+
+    .hero-texto h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-texto p {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-hero {
+        background: white;
+        color: var(--cor-primaria);
+        border: none;
+        padding: 1rem 2.5rem;
+        border-radius: 30px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-hero:hover {
+        background: var(--cor-primaria);
+        color: white;
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .trechos-literarios {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 3rem 2rem;
+        margin-bottom: 4rem;
+    }
+
+    .trecho {
+        background: var(--bg-destaque);
+        padding: 2rem;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(155, 145, 235, 0.1);
+        transition: all 0.3s ease;
+        border-left: 4px solid var(--cor-primaria);
+    }
+
+    .trecho:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(155, 145, 235, 0.2);
+    }
+
+    .trecho p {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.2rem;
+        font-style: italic;
+        color: var(--texto-principal);
+        line-height: 1.5;
+    }
+
+    .destaques-secao {
+        padding: 4rem 2rem;
+        margin-bottom: 4rem;
+        text-align: center;
+    }
+
+    .secao-titulo {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        color: var(--cor-primaria);
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .secao-subtitulo {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.2rem;
+        color: var(--texto-principal);
+        margin-bottom: 3rem;
+        opacity: 0.8;
+    }
+
+    .grid-destaques {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.5rem;
+        margin-bottom: 4rem;
+    }
+
+    .card-destaque {
+        background: var(--bg-destaque);
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 8px 25px rgba(155, 145, 235, 0.1);
+        transition: all 0.4s ease;
+        border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card-destaque::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+    }
+
+    .card-destaque:hover::before {
+        left: 100%;
+    }
+
+    .card-destaque:hover {
+        transform: translateY(-15px) scale(1.02);
+        border-color: var(--cor-primaria);
+        box-shadow: 0 20px 40px rgba(155, 145, 235, 0.2);
+    }
+
+    .icone-destaque {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        display: block;
+    }
+
+    .card-destaque h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        color: var(--cor-primaria);
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .card-destaque p {
+        font-family: 'Poppins', sans-serif;
+        color: var(--texto-principal);
+        line-height: 1.6;
+        opacity: 0.9;
+    }
+
+    .comunidade-destaque {
+        background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+        color: white;
+        padding: 4rem 2rem;
+        border-radius: 30px;
+        margin: 4rem 2rem;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(155, 145, 235, 0.3);
+    }
+
+    .comunidade-destaque h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        font-weight: 600;
+    }
+
+    .atividades-recentes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .atividade {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1.5rem;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+    }
+
+    .atividade:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-5px);
+    }
+
+ .atividade p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* 🌸 COR LILÁS PARA MODO CLARO - DESTAQUES DA COMUNIDADE */
+[data-theme="light"] .comunidade-destaque .atividade p {
+    color: #9b91eb; /* Cor lilás suave */
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5); /* Sombra suave para melhor legibilidade */
+}
+
+[data-theme="light"] .comunidade-destaque .atividade p strong {
+    color: #7b69e3; /* Lilás mais escuro para palavras em negrito */
+}
+
+[data-theme="light"] .comunidade-destaque .atividade {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="light"] .comunidade-destaque .atividade:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+     
+    .frase-final {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: var(--bg-destaque);
+        margin: 0 2rem 4rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(155, 145, 235, 0.1);
+    }
+
+    .frase-final p {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        font-style: italic;
+        color: var(--cor-primaria);
+        line-height: 1.4;
+    }
+
+    /* 📚 ESTILOS DA BIBLIOTECA ENRIQUECIDA */
+    .biblioteca-conteudo {
+        padding: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .filtros-biblioteca {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+    }
+
+    .btn-filtro {
+        background: var(--bg-destaque);
+        border: 2px solid var(--cor-secundaria);
+        padding: 0.7rem 1.5rem;
+        border-radius: 25px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-filtro.active, .btn-filtro:hover {
+        background: var(--cor-primaria);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .grid-livros {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
+        margin-bottom: 4rem;
+    }
+
+    .card-livro {
+        background: var(--bg-destaque);
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 8px 25px rgba(155, 145, 235, 0.2);
+        transition: all 0.4s ease;
+        border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card-livro::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+    }
+
+    .card-livro:hover::before {
+        left: 100%;
+    }
+
+    .card-livro:hover {
+        transform: translateY(-15px) scale(1.02);
+        border-color: var(--cor-primaria);
+        box-shadow: 0 20px 40px rgba(155, 145, 235, 0.3);
+    }
+
+    .card-livro img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 15px;
+        margin-bottom: 1.5rem;
+        border: 4px solid var(--cor-secundaria);
+        transition: transform 0.3s ease;
+    }
+
+    .card-livro:hover img {
+        transform: scale(1.05);
+    }
+
+    .badge-novo {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: #ff6b6b;
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .badge-popular {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background: var(--destaque-amarelo);
+        color: #333;
+        padding: 0.3rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .card-livro h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem;
+        color: var(--cor-primaria);
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        line-height: 1.3;
+    }
+
+    .card-livro .autor {
+        font-family: 'Poppins', sans-serif;
+        color: var(--texto-principal);
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
+        opacity: 0.8;
+    }
+
+    .card-livro .sinopse {
+        font-family: 'Poppins', sans-serif;
+        color: var(--texto-principal);
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+        opacity: 0.9;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .estrelas {
+        color: var(--destaque-amarelo);
+        font-size: 1.4rem;
+        margin-bottom: 1.2rem;
+        letter-spacing: 2px;
+    }
+
+    .info-adicional {
+        display: flex;
+        justify-content: space-between;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.85rem;
+        color: var(--texto-principal);
+        opacity: 0.7;
+        margin-bottom: 1rem;
+    }
+
+    .btn-ler {
+        background: var(--cor-primaria);
+        color: white;
+        border: none;
+        padding: 0.8rem 2rem;
+        border-radius: 25px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .btn-ler:hover {
+        background: var(--cor-destaque);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(123, 107, 255, 0.4);
+    }
+
+    /* 💫 ESTILOS DA PÁGINA SOBRE ENRIQUECIDA */
+    .sobre-conteudo {
+        padding: 4rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .sobre-hero {
+        background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+        color: white;
+        padding: 4rem 2rem;
+        border-radius: 30px;
+        margin-bottom: 4rem;
+        box-shadow: 0 20px 40px rgba(155, 145, 235, 0.3);
+    }
+
+    .sobre-hero h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+    }
+
+    .sobre-hero p {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.3rem;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+        opacity: 0.95;
+    }
+
+    .valores-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 4rem 0;
+    }
+
+    .valor-card {
+        background: var(--bg-destaque);
+        padding: 3rem 2rem;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(155, 145, 235, 0.2);
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .valor-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--cor-secundaria);
+        box-shadow: 0 20px 40px rgba(155, 145, 235, 0.3);
+    }
+
+    .valor-icone {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        display: block;
+    }
+
+    .valor-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        color: var(--cor-primaria);
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .valor-card p {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: var(--texto-principal);
+    }
+
+    .estatisticas {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin: 4rem 0;
+        padding: 3rem;
+        background: var(--bg-destaque);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(255, 220, 132, 0.3);
+    }
+
+    .estatistica {
+        text-align: center;
+    }
+
+    .estatistica-numero {
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--cor-primaria);
+        display: block;
+    }
+
+    .estatistica-label {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.1rem;
+        color: var(--texto-principal);
+        margin-top: 0.5rem;
+    }
+
+    .equipa {
+        margin: 4rem 0;
+    }
+
+    .equipa h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        color: var(--cor-primaria);
+        margin-bottom: 3rem;
+        text-align: center;
+    }
+
+    .membros-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .membro {
+        text-align: center;
+        padding: 2rem;
+        background: var(--bg-destaque);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(155, 145, 235, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .membro:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(155, 145, 235, 0.3);
+    }
+
+    .membro-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin: 0 auto 1.5rem;
+        background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: white;
+    }
+
+    .membro h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        color: var(--cor-primaria);
+        margin-bottom: 0.5rem;
+    }
+
+    .membro p {
+        font-family: 'Poppins', sans-serif;
+        color: var(--texto-principal);
+        opacity: 0.8;
+    }
+
+    /* 📱 RESPONSIVO */
+    @media (max-width: 768px) {
+        .hero-texto h1 {
+            font-size: 2.5rem;
+        }
+        
+        .hero-texto p {
+            font-size: 1.1rem;
+        }
+        
+        .sobre-hero h1 {
+            font-size: 2.5rem;
+        }
+        
+        .sobre-hero p {
+            font-size: 1.1rem;
+        }
+        
+        .grid-livros {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        .valores-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .estatisticas {
+            grid-template-columns: repeat(2, 1fr);
+            padding: 2rem;
+        }
+        
+        .membros-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .trechos-literarios {
+            grid-template-columns: 1fr;
+        }
+        
+        .grid-destaques {
+            grid-template-columns: 1fr;
+        }
+        
+        .atividades-recentes {
+            grid-template-columns: 1fr;
+        }
+        
+        .comunidade-destaque {
+            margin: 4rem 1rem;
+            padding: 3rem 1rem;
+        }
+        
+        .frase-final {
+            margin: 0 1rem 4rem;
+            padding: 3rem 1rem;
+        }
+        
+        .frase-final p {
+            font-size: 1.4rem;
+        }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔹 HEADER FIXO COM NAVEGAÇÃO SPA -->
+  <header class="header-principal">
+    <div class="logo">
+      <a href="#inicio" class="logo-link spa-link" data-page="inicio">🌸 LitGirl</a>
+    </div>
+    
+    <nav class="nav-principal" aria-label="Navegação principal">
+      <a href="#inicio" class="nav-link spa-link active" data-page="inicio">Início</a>
+      <a href="#biblioteca" class="nav-link spa-link" data-page="biblioteca">Biblioteca</a>
+      <a href="#sobre" class="nav-link spa-link" data-page="sobre">Sobre</a>
+      <a href="login.html" class="btn-login">Entrar</a>
+    </nav>
+    
+    <button id="theme-toggle-header" class="theme-toggle-header">☀️</button>
+  </header>
+
+  <!-- 🌸 CONTEÚDO SPA -->
+  <main>
+    <!-- PÁGINA INÍCIO MELHORADA -->
+    <section id="inicio" class="spa-content active">
+      <div class="inicio-conteudo">
+        <section class="hero-banner">
+          <img src="img/banner.jpeg"/>
+          <div class="hero-texto">
+            <h1>Pegue sua xícara de café, acomode-se e mergulhe nas histórias.</h1>
+            <p>LitGirl — o seu cantinho literário, feito por leitoras, para leitoras. 💜📖</p>
+            <a href="login.html" class="btn-hero">Entre na comunidade</a>
+          </div>
+        </section>
+
+        <section class="trechos-literarios">
+          <div class="trecho">
+            <p><em>"Livros são sonhos que seguramos nas mãos."</em> 🦉</p>
+          </div>
+          <div class="trecho">
+            <p><em>"Entre páginas, descobri o melhor de mim."</em> 🦉</p>
+          </div>
+          <div class="trecho">
+            <p><em>"Ler é viajar sem sair do abraço da sua poltrona."</em> 🦉</p>
+          </div>
+        </section>
+
+        <section class="destaques-secao">
+          <h2 class="secao-titulo">✨ Por que fazer parte da LitGirl?</h2>
+          <p class="secao-subtitulo">Descubra tudo que nossa comunidade tem para oferecer</p>
+          
+          <div class="grid-destaques">
+            <div class="card-destaque">
+              <span class="icone-destaque">📚</span>
+              <h3>Biblioteca Exclusiva</h3>
+              <p>Acesso a centenas de livros cuidadosamente selecionados para leitoras apaixonadas por boas histórias.</p>
+            </div>
+            
+            <div class="card-destaque">
+              <span class="icone-destaque">👥</span>
+              <h3>Comunidade Ativa</h3>
+              <p>Conecte-se com milhares de leitoras, participe de clubes do livro e compartilhe suas experiências.</p>
+            </div>
+            
+            <div class="card-destaque">
+              <span class="icone-destaque">💬</span>
+              <h3>Discussões Enriquecedoras</h3>
+              <p>Participe de conversas profundas sobre livros, personagens e temas que nos tocam.</p>
+            </div>
+            
+            <div class="card-destaque">
+              <span class="icone-destaque">🎯</span>
+              <h3>Recomendações Personalizadas</h3>
+              <p>Receba sugestões de leitura baseadas no seu gosto literário e nas suas experiências anteriores.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="comunidade-destaque">
+          <h2>✨ Destaques da Comunidade</h2>
+          <div class="atividades-recentes">
+            <div class="atividade">
+              <p></em>✨ Beatriz Maria começou <strong>Orgulho e Preconceito</strong></p>
+            </div>
+            <div class="atividade">
+              <p>✨ Bianca terminou <strong>O Pequeno Príncipe</strong> com 5 estrelas/p>
+            </div>
+            <div class="atividade">
+              <p>✨ 12 LitGirls estão lendo <strong>A Seleção</strong> agora mesmo</p>
+            </div>
+            <div class="atividade">
+              <p>✨ Maria Clara adicionou <strong>É assim que acaba</strong> aos favoritos</p>
+            </div>
+            <div class="atividade">
+              <p>✨ 8 novas resenhas foram publicadas hoje</p>
+            </div>
+            <div class="atividade">
+              <p>✨ Novo clube do livro sobre Fantasia começando semana que vem</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="frase-final">
+          <p><em>"Entre um café e outro, novas páginas se abrem."</em> 🦉</p>
+        </section>
+      </div>
+    </section>
+
+    <!-- PÁGINA BIBLIOTECA ENRIQUECIDA -->
+    <section id="biblioteca" class="spa-content">
+      <div class="biblioteca-conteudo">
+        <section class="titulo-biblioteca">
+          <h1>📚 Biblioteca LitGirl</h1>
+          <p>Descubra histórias que inspiram, emocionam e fazem o coração bater mais forte. 💕</p>
+        </section>
+
+        <div class="filtros-biblioteca">
+          <button class="btn-filtro active" data-filter="todos">Todos</button>
+          <button class="btn-filtro" data-filter="romance">Romance</button>
+          <button class="btn-filtro" data-filter="fantasia">Fantasia</button>
+          <button class="btn-filtro" data-filter="drama">Drama</button>
+          <button class="btn-filtro" data-filter="classico">Clássicos</button>
+        </div>
+
+        <section class="grid-livros">
+          <!-- ROMANCE -->
+          <div class="card-livro" data-categoria="romance">
+            <div class="badge-popular">🔥 Popular</div>
+            <img src="img/orgulhoepreconceito.jpeg" alt="Orgulho e Preconceito">
+            <h3>Orgulho e Preconceito</h3>
+            <p class="autor">Jane Austen</p>
+            <p class="sinopse">A clássica história de Elizabeth Bennet e Mr. Darcy em uma dança de amor, orgulho e mal-entendidos na Inglaterra do século XIX.</p>
+            <div class="info-adicional">
+              <span>384 páginas</span>
+              <span>Romance Clássico</span>
+            </div>
+            <div class="estrelas">★★★★★</div>
+            <button class="btn-ler">💜 Ler agora</button>
+          </div>
+
+          <div class="card-livro" data-categoria="romance">
+            <div class="badge-novo">✨ Novo</div>
+            <img src="img/aselecao.jpeg" alt="A Seleção">
+            <h3>A Seleção</h3>
+            <p class="autor">Kiera Cass</p>
+            <p class="sinopse">America Singer entra em uma competição pela coroa e pelo coração do príncipe Maxon em uma distopia romântica cheia de intrigas.</p>
+            <div class="info-adicional">
+              <span>327 páginas</span>
+              <span>Romance Distópico</span>
+            </div>
+            <div class="estrelas">★★★★☆</div>
+            <button class="btn-ler">👑 Adicionar à estante</button>
+          </div>
+
+          <div class="card-livro" data-categoria="romance">
+            <img src="img/eleanor.jpeg" alt="Eleanor & Park">
+            <h3>Eleanor & Park</h3>
+            <p class="autor">Rainbow Rowell</p>
+            <p class="sinopse">Dois adolescentes incomuns encontram amor e refúgio um no outro enquanto enfrentam os desafios do ensino médio nos anos 80.</p>
+            <div class="info-adicional">
+              <span>333 páginas</span>
+              <span>Romance Young Adult</span>
+            </div>
+            <div class="estrelas">★★★★★</div>
+            <button class="btn-ler">💌 Ver mais</button>
+          </div>
+
+          <!-- FANTASIA -->
+          <div class="card-livro" data-categoria="fantasia">
+            <div class="badge-popular">🌟 Em Alta</div>
+            <img src="img/harrypotter.jpeg" alt="Harry Potter e a Pedra Filosofal">
+            <h3>Harry Potter e a Pedra Filosofal</h3>
+            <p class="autor">J.K. Rowling</p>
+            <p class="sinopse">O início da jornada do jovem bruxo Harry Potter na Escola de Magia e Bruxaria de Hogwarts.</p>
+            <div class="info-adicional">
+              <span>223 páginas</span>
+              <span>Fantasia</span>
+            </div>
+            <div class="estrelas">★★★★★</div>
+            <button class="btn-ler">⚡ Ler agora</button>
+          </div>
+
+          <div class="card-livro" data-categoria="fantasia">
+            <img src="img/osenhordosaneis.jpeg" alt="O Senhor dos Anéis">
+            <h3>O Senhor dos Anéis</h3>
+            <p class="autor">J.R.R. Tolkien</p>
+            <p class="sinopse">A épica jornada de Frodo Bolseiro para destruir o Um Anel e salvar a Terra Média das trevas.</p>
+            <div class="info-adicional">
+              <span>1216 páginas</span>
+              <span>Fantasia Épica</span>
+            </div>
+            <div class="estrelas">★★★★★</div>
+            <button class="btn-ler">🧙‍♂️ Explorar</button>
+          </div>
+
+          <!-- DRAMA -->
+          <div class="card-livro" data-categoria="drama">
+            <div class="badge-popular">💔 Comovente</div>
+            <img src="img/ossetemaridos.jpeg" alt="Os Sete Maridos de Evelyn Hugo">
+            <h3>Os Sete Maridos de Evelyn Hugo</h3>
+            <p class="autor">Taylor Jenkins Reid</p>
+            <p class="sinopse">A lendária estrela de cinema Evelyn Hugo finalmente decide contar a verdade sobre sua vida glamourosa e seus sete casamentos.</p>
+            <div class="info-adicional">
+              <span>360 páginas</span>
+              <span>Drama Histórico</span>
+            </div>
+            <div class="estrelas">★★★★★</div>
+            <button class="btn-ler">🌹 Ler sinopse</button>
+          </div>
+
+          <div class="card-livro" data-categoria="drama">
+            <img src="img/verity.jpeg" alt="Verity">
+            <h3>Verity</h3>
+            <p class="autor">Colleen Hoover</p>
+            <p class="sinopse">Uma escritora aceita terminar a série de livros de uma autora best-seller incapacitada e descobre manuscritos perturbadores.</p>
+            <div class="info-adicional">
+              <span>336 páginas</span>
+              <span>Thriller Psicológico</span>
+            </div>
+            <div class="estrelas">★★★★☆</div>
+            <button class="btn-ler">🔍 Ver detalhes</button>
+          </div>
+
+          <!-- CLÁSSICOS -->
+          <div class="card-livro" data-categoria="classico">
+            <img src="img/opequenoprincipe.jpeg" alt="O Pequeno Príncipe">
+            <h3>O Pequeno Príncipe</h3>
+            <p class="autor">Antoine de Saint-Exupéry<div class="info-adicional">
+              <span>96 páginas</span>
+              <span>Clássico Francês</span>
+            </div>
+            <div class="estrelas">★★★★★</div>
+            <button class="btn-ler">✨ Ver detalhes</button>
+          </div>
+
+          <div class="card-livro" data-categoria="classico">
+            <img src="img/1984.jpeg" alt="1984">
+            <h3>1984</h3>
+            <p class="autor">George Orwell</p>
+            <p class="sinopse">Uma distopia sobre vigilância totalitária e controle do pensamento em um futuro sombrio.</p>
+            <div class="info-adicional">
+              <span>328 páginas</span>
+              <span>Ficção Distópica</span>
+            </div>
+            <div class="estrelas">★★★★★</div>
+            <button class="btn-ler">🔐 Explorar</button>
+          </div>
+        </section>
+
+        <section class="mensagem-final">
+          <p><em>"Cada livro é uma nova aventura esperando para ser descoberta." 📖✨</em></p>
+        </section>
+      </div>
+    </section>
+
+    <!-- PÁGINA SOBRE ENRIQUECIDA -->
+    <section id="sobre" class="spa-content">
+      <div class="sobre-conteudo">
+        <section class="sobre-hero">
+          <h1>💫 Sobre o LitGirl</h1>
+          <p>Um cantinho literário criado com muito carinho para leitoras que acreditam no poder transformador das histórias</p>
+        </section>
+
+        <section class="nossa-historia">
+          <h2>📖 Nossa História</h2>
+          <p>O LitGirl nasceu do sonho de criar um espaço acolhedor onde leitoras pudessem compartilhar suas paixões literárias, descobrir novas histórias e conectar-se com outras amantes de livros.</p>
+        </section>
+
+        <section class="valores-grid">
+          <div class="valor-card">
+            <span class="valor-icone">🤝</span>
+            <h3>Comunidade</h3>
+            <p>Acreditamos no poder das conexões entre leitoras. Juntas, descobrimos mundos infinitos através das páginas.</p>
+          </div>
+          
+          <div class="valor-card">
+            <span class="valor-icone">💖</span>
+            <h3>Paixão Literária</h3>
+            <p>Vivemos e respiramos livros. Cada história nos toca de forma única e queremos compartilhar essa magia.</p>
+          </div>
+          
+          <div class="valor-card">
+            <span class="valor-icone">🌱</span>
+            <h3>Crescimento</h3>
+            <p>Acreditamos que cada livro nos transforma e nos ajuda a crescer como pessoas e como comunidade.</p>
+          </div>
+        </section>
+
+        <section class="estatisticas">
+          <div class="estatistica">
+            <span class="estatistica-numero">2K+</span>
+            <span class="estatistica-label">Leitoras Ativas</span>
+          </div>
+          <div class="estatistica">
+            <span class="estatistica-numero">500+</span>
+            <span class="estatistica-label">Livros Catalogados</span>
+          </div>
+          <div class="estatistica">
+            <span class="estatistica-numero">1.2K</span>
+            <span class="estatistica-label">Resenhas Publicadas</span>
+          </div>
+          <div class="estatistica">
+            <span class="estatistica-numero">15+</span>
+            <span class="estatistica-label">Clubes do Livro</span>
+          </div>
+        </section>
+
+        <section class="equipa">
+          <h2>👥 Nossa Equipa</h2>
+          <div class="membros-grid">
+            <div class="membro">
+              <div class="membro-avatar">Bibi</div>
+              <h3>Bianca Oliveira</h3>
+              <p>Fundadora & CEO</p>
+              <p>Amante de clássicos e café</p>
+            </div>
+            
+            <div class="membro">
+              <div class="membro-avatar">Bia</div>
+              <h3>Beatriz Maria</h3>
+              <p>Editora Chefe</p>
+              <p>Especialista em romance</p>
+            </div>
+            
+        </section>
+
+        <section class="convite-final">
+          <h2>🎉 Junte-se a Nós!</h2>
+          <p>Faça parte dessa comunidade incrível de leitoras. Descubra novos livros, compartilhe suas opiniões e faça amizades que vão durar para sempre.</p>
+          <a href="login.html" class="btn-primario" style="margin-top: 2rem;">Quero Fazer Parte</a>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <!-- 🔹 FOOTER -->
+  <footer class="footer-principal">
+    <div class="footer-conteudo">
+      <p>© 2025 LitGirl • Feito com 💖 por Bianca Oliveira</p>
+      <p>Um espaço criado para leitoras que amam livros, cafés e boas histórias. ☕📚</p>
+    </div>
+  </footer>
+
+  <!-- ☀️ Botão de tema flutuante -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema">
+    <span class="sol">☀️</span>
+    <span class="lua">🌙</span>
+  </button>
+
+  <!-- ⚙️ SCRIPT SPA + FILTROS -->
+  <script>
+    // 🌙 SISTEMA DE TEMA
+    function inicializarTema() {
+      const btn = document.getElementById('theme-toggle');
+      const btnHeader = document.getElementById('theme-toggle-header');
+      
+      const temaSalvo = localStorage.getItem('litgirl-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', temaSalvo);
+      
+      const icone = temaSalvo === 'dark' ? '🌙' : '☀️';
+      if (btn) btn.textContent = icone;
+      if (btnHeader) btnHeader.textContent = icone;
+      
+      function alternarTema() {
+        const atual = document.documentElement.getAttribute('data-theme');
+        const novo = atual === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', novo);
+        localStorage.setItem('litgirl-theme', novo);
+        const novoIcone = novo === 'dark' ? '🌙' : '☀️';
+        if (btn) btn.textContent = novoIcone;
+        if (btnHeader) btnHeader.textContent = novoIcone;
+      }
+      
+      if (btn) btn.addEventListener('click', alternarTema);
+      if (btnHeader) btnHeader.addEventListener('click', alternarTema);
+    }
+
+    // 🚀 SISTEMA SPA
+    function inicializarSPA() {
+      const links = document.querySelectorAll('.spa-link');
+      const contents = document.querySelectorAll('.spa-content');
+      
+      links.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetPage = link.getAttribute('data-page');
+          
+          links.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+          
+          contents.forEach(content => {
+            content.classList.remove('active');
+            if (content.id === targetPage) {
+              content.classList.add('active');
+            }
+          });
+          
+          history.pushState(null, null, `#${targetPage}`);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+      
+      function handleHashChange() {
+        const hash = window.location.hash.substring(1) || 'inicio';
+        const targetLink = document.querySelector(`.spa-link[data-page="${hash}"]`);
+        const targetContent = document.getElementById(hash);
+        
+        if (targetLink && targetContent) {
+          links.forEach(l => l.classList.remove('active'));
+          contents.forEach(c => c.classList.remove('active'));
+          
+          targetLink.classList.add('active');
+          targetContent.classList.add('active');
+        }
+      }
+      
+      window.addEventListener('hashchange', handleHashChange);
+      window.addEventListener('load', handleHashChange);
+    }
+
+    // 📚 SISTEMA DE FILTROS
+    function inicializarFiltros() {
+      const botoesFiltro = document.querySelectorAll('.btn-filtro');
+      const cardsLivro = document.querySelectorAll('.card-livro');
+      
+      botoesFiltro.forEach(botao => {
+        botao.addEventListener('click', () => {
+          // Ativa botão clicado
+          botoesFiltro.forEach(b => b.classList.remove('active'));
+          botao.classList.add('active');
+          
+          const filtro = botao.getAttribute('data-filter');
+          
+          // Filtra livros
+          cardsLivro.forEach(card => {
+            if (filtro === 'todos' || card.getAttribute('data-categoria') === filtro) {
+              card.style.display = 'block';
+              setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, 100);
+            } else {
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                card.style.display = 'none';
+              }, 300);
+            }
+          });
+        });
+      });
+    }
+    
+    // 🚀 INICIALIZAÇÃO COMPLETA
+    document.addEventListener('DOMContentLoaded', function() {
+      inicializarTema();
+      inicializarSPA();
+      inicializarFiltros();
+      console.log('✅ LitGirl SPA Premium carregada!');
+    });
+  </script>
+</body>
+</html>

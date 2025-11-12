@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Perfil • LitGirl</title>
+  
+  <!-- 🌷 Fontes Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* 🎨 VARIÁVEIS DE TEMA */
+    :root {
+        --bg-principal: #fff6e6;
+        --bg-destaque: #fff8c6;
+        --cor-primaria: #9b91eb;
+        --cor-secundaria: #e2a9f1;
+        --cor-destaque: #7b6bff;
+        --texto-principal: #574944;
+        --sombra-suave: rgba(155, 145, 235, 0.25);
+    }
+
+    [data-theme="dark"] {
+        --bg-principal: #2f2a2a;
+        --bg-destaque: #3d3636;
+        --texto-principal: #f4e9d8;
+    }
+
+    body {
+        padding-top: 80px;
+        background: linear-gradient(135deg, var(--bg-principal), var(--bg-destaque));
+        min-height: 100vh;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* 🔹 HEADER */
+    .header-principal {
+        background: linear-gradient(135deg, #fff8c6, #fff4b0);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.6rem 1.5rem;
+        height: 60px;
+        box-shadow: 0 2px 10px rgba(155, 145, 235, 0.2);
+    }
+
+    [data-theme="dark"] .header-principal {
+        background: linear-gradient(135deg, #3d3636, #2f2a2a);
+    }
+
+    .logo-link {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #8a2be2;
+        text-decoration: none;
+    }
+
+    .nav-principal {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+    }
+
+    .nav-link {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        color: var(--texto-principal);
+        text-decoration: none;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+        background: #8a2be2;
+        color: white !important;
+    }
+
+    .btn-login {
+        background: #8a2be2;
+        color: white !important;
+        padding: 0.5rem 1.2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+
+    /* 🎯 CONTEÚDO DO PERFIL */
+    .perfil-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 2rem;
+    }
+
+    .perfil-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        background: var(--bg-destaque);
+        padding: 3rem 2rem;
+        border-radius: 25px;
+        box-shadow: 0 10px 30px var(--sombra-suave);
+    }
+
+    .perfil-header h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.8rem;
+        color: var(--cor-primaria);
+        margin-bottom: 1rem;
+        font-weight: 700;
+    }
+
+    .perfil-header p {
+        font-size: 1.3rem;
+        color: var(--texto-principal);
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* 📦 GRID DE FUNCIONALIDADES */
+    .funcionalidades-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .funcionalidade-card {
+        background: var(--bg-destaque);
+        padding: 2.5rem 2rem;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 8px 25px var(--sombra-suave);
+        transition: all 0.4s ease;
+        border: 3px solid transparent;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .funcionalidade-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.6s;
+    }
+
+    .funcionalidade-card:hover::before {
+        left: 100%;
+    }
+
+    .funcionalidade-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--cor-primaria);
+        box-shadow: 0 15px 35px rgba(155, 145, 235, 0.3);
+    }
+
+    .func-icone {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        display: block;
+    }
+
+    .funcionalidade-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.6rem;
+        color: var(--cor-primaria);
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .funcionalidade-card p {
+        color: var(--texto-principal);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+        font-size: 1rem;
+    }
+
+    .btn-func {
+        background: var(--cor-primaria);
+        color: white;
+        border: none;
+        padding: 0.8rem 2rem;
+        border-radius: 25px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .btn-func:hover {
+        background: var(--cor-destaque);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(123, 107, 255, 0.4);
+    }
+
+    /* 📊 ESTATÍSTICAS */
+    .estatisticas-perfil {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin: 3rem 0;
+        padding: 2.5rem;
+        background: var(--bg-destaque);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(255, 220, 132, 0.3);
+    }
+
+    .estatistica-item {
+        text-align: center;
+        padding: 1.5rem;
+        background: var(--bg-principal);
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+    }
+
+    .estatistica-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .estatistica-numero {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--cor-primaria);
+        display: block;
+    }
+
+    .estatistica-label {
+        font-size: 1rem;
+        color: var(--texto-principal);
+        margin-top: 0.5rem;
+    }
+
+    /* 📚 LIVROS RECENTES */
+    .livros-recentes {
+        margin: 3rem 0;
+    }
+
+    .livros-recentes h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.2rem;
+        color: var(--cor-primaria);
+        text-align: center;
+        margin-bottom: 2rem;
+        font-weight: 600;
+    }
+
+    .grid-livros-pequeno {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .card-livro-pequeno {
+        background: var(--bg-destaque);
+        padding: 1.5rem;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 5px 15px var(--sombra-suave);
+        transition: all 0.3s ease;
+    }
+
+    .card-livro-pequeno:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(155, 145, 235, 0.3);
+    }
+
+    .card-livro-pequeno .livro-icone {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .card-livro-pequeno h4 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.1rem;
+        color: var(--cor-primaria);
+        margin-bottom: 0.5rem;
+    }
+
+    .card-livro-pequeno .estrelas {
+        color: #ffdc84;
+        font-size: 1rem;
+    }
+
+    /* 🎯 BOTÃO VOLTAR */
+    .btn-voltar {
+        background: var(--cor-primaria);
+        color: white;
+        padding: 1rem 2.5rem;
+        border-radius: 25px;
+        text-decoration: none;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        display: inline-block;
+        margin-top: 2rem;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1rem;
+        box-shadow: 0 8px 25px var(--sombra-suave);
+    }
+
+    .btn-voltar:hover {
+        background: var(--cor-destaque);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px var(--sombra-suave);
+    }
+
+    .centro {
+        text-align: center;
+    }
+
+    /* 📱 RESPONSIVO */
+    @media (max-width: 768px) {
+        .funcionalidades-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .perfil-header h1 {
+            font-size: 2.2rem;
+        }
+        
+        .perfil-header p {
+            font-size: 1.1rem;
+        }
+        
+        .estatisticas-perfil {
+            grid-template-columns: repeat(2, 1fr);
+            padding: 1.5rem;
+        }
+        
+        .grid-livros-pequeno {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .perfil-container {
+            padding: 1rem;
+        }
+        
+        .funcionalidade-card {
+            padding: 2rem 1.5rem;
+        }
+        
+        .estatisticas-perfil {
+            grid-template-columns: 1fr;
+        }
+        
+        .grid-livros-pequeno {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header-principal">
+    <div class="logo">
+      <a href="index.html" class="logo-link">🌸 LitGirl</a>
+    </div>
+    
+    <nav class="nav-principal">
+      <a href="index.html" class="nav-link">Início</a>
+      <a href="index.html#biblioteca" class="nav-link">Biblioteca</a>
+      <a href="index.html#sobre" class="nav-link">Sobre</a>
+      <a href="perfil.html" class="btn-login active">Meu Perfil</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="perfil-container">
+      
+      <!-- 🎉 CABEÇALHO DO PERFIL -->
+      <section class="perfil-header">
+        <h1>🎉 Bem-vinda ao seu Perfil!</h1>
+        <p>Esta é sua área pessoal na LitGirl. Gerencie sua biblioteca, acompanhe seu progresso e conecte-se com outras leitoras!</p>
+      </section>
+
+      <!-- 📦 FUNCIONALIDADES PRINCIPAIS -->
+      <section class="funcionalidades-grid">
+        
+        <!-- 📖 ADICIONAR LIVROS -->
+        <div class="funcionalidade-card">
+          <span class="func-icone">📖</span>
+          <h3>Adicionar Livros</h3>
+          <p>Cadastre novos livros à sua estante pessoal. Adicione capa, sinopse, gênero e suas primeiras impressões.</p>
+          <button class="btn-func" onclick="abrirModal('add-livro')">➕ Adicionar</button>
+        </div>
+
+        <!-- 📚 MINHA ESTANTE -->
+        <div class="funcionalidade-card">
+          <span class="func-icone">📚</span>
+          <h3>Minha Estante</h3>
+          <p>Veja todos os livros da sua coleção. Organize por gênero, status de leitura ou data de adição.</p>
+          <button class="btn-func" onclick="abrirModal('estante')">👀 Ver Estante</button>
+        </div>
+
+        <!-- ⭐ AVALIAÇÕES -->
+        <div class="funcionalidade-card">
+          <span class="func-icone">⭐</span>
+          <h3>Avaliações</h3>
+          <p>Escreva resenhas detalhadas, dê notas de 1 a 5 estrelas e compartilhe suas opiniões com a comunidade.</p>
+          <button class="btn-func" onclick="abrirModal('avaliacoes')">✍️ Avaliar</button>
+        </div>
+
+        <!-- 📊 PROGRESSO -->
+        <div class="funcionalidade-card">
+          <span class="func-icone">📊</span>
+          <h3>Meu Progresso</h3>
+          <p>Acompanhe páginas lidas, tempo de leitura e metas alcançadas. Visualize suas estatísticas de leitura.</p>
+          <button class="btn-func" onclick="abrirModal('progresso')">📈 Ver Progresso</button>
+        </div>
+
+        <!-- 👥 AMIGAS LEITORAS -->
+        <div class="funcionalidade-card">
+          <span class="func-icone">👥</span>
+          <h3>Amigas Leitoras</h3>
+          <p>Conecte-se com outras leitoras, veja o que estão lendo e descubra recomendações personalizadas.</p>
+          <button class="btn-func" onclick="abrirModal('amigas')">🔍 Encontrar</button>
+        </div>
+
+        <!-- 🎯 METAS -->
+        <div class="funcionalidade-card">
+          <span class="func-icone">🎯</span>
+          <h3>Metas de Leitura</h3>
+          <p>Defina metas anuais, mensais ou por livro. Receba lembretes e comemore suas conquistas!</p>
+          <button class="btn-func" onclick="abrirModal('metas')">🎯 Criar Meta</button>
+        </div>
+
+      </section>
+
+      <!-- 📊 ESTATÍSTICAS RÁPIDAS -->
+      <section class="estatisticas-perfil">
+        <div class="estatistica-item">
+          <span class="estatistica-numero">12</span>
+          <span class="estatistica-label">Livros Lidos</span>
+        </div>
+        <div class="estatistica-item">
+          <span class="estatistica-numero">3.2K</span>
+          <span class="estatistica-label">Páginas</span>
+        </div>
+        <div class="estatistica-item">
+          <span class="estatistica-numero">8</span>
+          <span class="estatistica-label">Resenhas</span>
+        </div>
+        <div class="estatistica-item">
+          <span class="estatistica-numero">15</span>
+          <span class="estatistica-label">Dias de Leitura</span>
+        </div>
+      </section>
+
+      <!-- 📚 LIVROS RECENTES -->
+      <section class="livros-recentes">
+        <h2>📚 Seus Livros Recentes</h2>
+        <div class="grid-livros-pequeno">
+          <div class="card-livro-pequeno">
+            <span class="livro-icone">📖</span>
+            <h4>Orgulho e Preconceito</h4>
+            <div class="estrelas">★★★★★</div>
+          </div>
+          <div class="card-livro-pequeno">
+            <span class="livro-icone">📖</span>
+            <h4>O Pequeno Príncipe</h4>
+            <div class="estrelas">★★★★★</div>
+          </div>
+          <div class="card-livro-pequeno">
+            <span class="livro-icone">📖</span>
+            <h4>A Seleção</h4>
+            <div class="estrelas">★★★★☆</div>
+          </div>
+          <div class="card-livro-pequeno">
+            <span class="livro-icone">📖</span>
+            <h4>Verity</h4>
+            <div class="estrelas">★★★★☆</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 🎯 VOLTAR AO INÍCIO -->
+      <div class="centro">
+        <a href="index.html" class="btn-voltar">← Voltar para o Início</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ⚙️ SCRIPT SIMPLES -->
+  <script>
+    function abrirModal(tipo) {
+      const mensagens = {
+        'add-livro': '📖 Funcionalidade: Adicionar Livros (em desenvolvimento)',
+        'estante': '📚 Funcionalidade: Minha Estante (em desenvolvimento)', 
+        'avaliacoes': '⭐ Funcionalidade: Avaliações (em desenvolvimento)',
+        'progresso': '📊 Funcionalidade: Meu Progresso (em desenvolvimento)',
+        'amigas': '👥 Funcionalidade: Amigas Leitoras (em desenvolvimento)',
+        'metas': '🎯 Funcionalidade: Metas de Leitura (em desenvolvimento)'
+      };
+      
+      alert(mensagens[tipo] || 'Funcionalidade em desenvolvimento! 🚀');
+    }
+
+    // 🌙 TEMA (opcional)
+    const temaSalvo = localStorage.getItem('litgirl-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', temaSalvo);
+  </script>
+
+</body>
+</html>
